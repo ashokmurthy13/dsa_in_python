@@ -36,7 +36,14 @@ class Trie:
             return False
         
     def start_with(self, prefix:str) -> bool:
-        pass
+        current = self.root
+
+        for letter in prefix:
+            index = ord(letter) - ord('a')
+            if current.children[index] is None:
+                return False
+            current = current.children[index]
+        return True
 
 
 class Test:
@@ -52,6 +59,8 @@ class Test:
         print(trie.search("the"))
         print(trie.search("mouse"))
         print(trie.search("them"))
+        print(trie.start_with("mouse"))
+        print(trie.start_with("key"))
 
 test = Test()
 test.test_trie()
